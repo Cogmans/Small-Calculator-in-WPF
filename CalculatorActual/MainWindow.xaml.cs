@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -41,7 +42,11 @@ namespace CalculatorActual
         public bool MultiplyOperatorSelected;
         public bool DivisionOperatorSelected;
 
+        //max allowed decimal number 
+        public bool FirstNumberComma;
+        public int MaxDecimalLenght;
 
+        string[] decimalSeparated = new string[2];
 
         public MainWindow()
         {
@@ -56,6 +61,7 @@ namespace CalculatorActual
             LastNumberString = string.Empty;
             MemoryNumberString = string.Empty;
 
+
             OperatorSelected = false;
 
             PlusOperatorSelected = false;
@@ -63,130 +69,115 @@ namespace CalculatorActual
             MultiplyOperatorSelected = false;
             DivisionOperatorSelected = false;
 
+            //for handling decimals
+            FirstNumberComma = false;
+            MaxDecimalLenght = 6;
 
-
+            // decimalSeparated
+            //decimalSeparated. ;
+            //decimalSeparated[0] = "";
+            //decimalSeparated[1] = "";
+            decimalSeparated[0] = "";
+            decimalSeparated[1] = "";
 
 
         }
 
         private void Button_9(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 9;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "9";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber<1000000)
+            else if ( FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 9);
-                FirstNumber= newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "9";
                 Display.Text = FirstNumberString;
+            }
 
-            }
 
         }
 
         private void Button_8(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 8;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "8";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 8);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "8";
                 Display.Text = FirstNumberString;
+            }
 
-            }
         }
 
         private void Button_7(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 7;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "7";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 7);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "7";
                 Display.Text = FirstNumberString;
+            }
 
-            }
         }
 
         private void Button_AC(object sender, RoutedEventArgs e)
         {
-            FirstNumber = 0;
-            FirstNumberString = FirstNumber.ToString();
-            LastNumber = 0;
-            LastNumberString = LastNumber.ToString();
-            MemoryNumber = 0;
-            MemoryNumberString= MemoryNumber.ToString();
+            FirstNumberString = string.Empty;
+            LastNumberString = string.Empty;
+            MemoryNumberString = string.Empty;
             Display.Text = FirstNumberString;
             MemoryDisplay.Text = string.Empty;
+            FirstNumberComma = false;
         }
 
         private void Button_6(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 6;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "6";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 6);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "6";
                 Display.Text = FirstNumberString;
-
             }
         }
 
         private void Button_5(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 5;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "5";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 5);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "5";
                 Display.Text = FirstNumberString;
-
             }
         }
 
         private void Button_4(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 4;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "4";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 4);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "4";
                 Display.Text = FirstNumberString;
-
             }
         }
 
@@ -199,56 +190,61 @@ namespace CalculatorActual
 
         private void Button_3(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 3;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "3";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 3);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "3";
                 Display.Text = FirstNumberString;
-
             }
         }
 
         private void Button_2(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 2;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "2";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 2);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "2";
                 Display.Text = FirstNumberString;
+            }
 
-            }
         }
 
         private void Button_1(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 1;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = "1";
                 Display.Text = FirstNumberString;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + 1);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString = FirstNumberString + "1";
                 Display.Text = FirstNumberString;
+            }
 
-            }
+            //kept for notekeeping
+            //if (FirstNumber == 0 && !OperatorSelected)
+            //{
+            //    FirstNumber = 1;
+            //    FirstNumberString = FirstNumber.ToString();
+            //    Display.Text = FirstNumberString;
+            //}
+            //else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            //{
+            //    float newnumber = float.Parse(FirstNumber.ToString() + 1);
+            //    FirstNumber = newnumber;
+            //    FirstNumberString = FirstNumber.ToString();
+            //    Display.Text = FirstNumberString;
+
+            //}
         }
 
         private void Button_Mem(object sender, RoutedEventArgs e)
@@ -263,33 +259,56 @@ namespace CalculatorActual
 
         private void Button_Comma(object sender, RoutedEventArgs e)
         {
-            if (FirstNumber == 0 && !OperatorSelected)
+            if (FirstNumberString == string.Empty && !OperatorSelected)
             {
-                FirstNumber = 0;
-                FirstNumberString = FirstNumber.ToString()+".";
+                FirstNumberString = "0.";
                 Display.Text = FirstNumberString;
+                FirstNumberComma = true;
             }
-            else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            else if( FirstNumberString!= string.Empty && !OperatorSelected && !FirstNumberString.Contains('.') ) 
             {
-                float newnumber = float.Parse(FirstNumber.ToString() + ".");
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
+                FirstNumberString += ".";
                 Display.Text = FirstNumberString;
+                FirstNumberComma = true;
+            }
+            //if (FirstNumber == 0 && !OperatorSelected)
+            //{
+            //    FirstNumber = 0;
+            //    FirstNumberString = FirstNumber.ToString()+".";
+            //    Display.Text = FirstNumberString;
+            //}
+            //else if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            //{
+            //    float newnumber = float.Parse(FirstNumber.ToString() + ".");
+            //    FirstNumber = newnumber;
+            //    FirstNumberString = FirstNumber.ToString();
+            //    Display.Text = newnumber.ToString();
 
-            }
+            //}
         }
 
         private void Button_0(object sender, RoutedEventArgs e)
         {
 
-            if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
-            {
-                float newnumber = float.Parse(FirstNumber.ToString() + 0);
-                FirstNumber = newnumber;
-                FirstNumberString = FirstNumber.ToString();
-                Display.Text = FirstNumberString;
+            //if (FirstNumberString != string.Empty && !OperatorSelected && float.Parse(FirstNumberString) < 1000000.0f)
+            //{
+            //    FirstNumberString += "0";
+            //    Display.Text = FirstNumberString;
+            //}
 
+            if (FirstNumberString != string.Empty && !OperatorSelected && BeforeAfterCommaCount(FirstNumberString).X < 9 && BeforeAfterCommaCount(FirstNumberString).Y < 4)
+            {
+                FirstNumberString += "0";
+                Display.Text = FirstNumberString;
             }
+            //if (FirstNumber != 0 && !OperatorSelected && FirstNumber < 1000000)
+            //{
+            //    float newnumber = float.Parse(FirstNumber.ToString() + 0);
+            //    FirstNumber = newnumber;
+            //    FirstNumberString = FirstNumber.ToString();
+            //    Display.Text = FirstNumberString;
+
+            //}
         }
 
         private void Button_Enter(object sender, RoutedEventArgs e)
@@ -314,6 +333,34 @@ namespace CalculatorActual
 
         private void Button_Divide(object sender, RoutedEventArgs e)
         {
+
+        }
+
+
+        //to keep our decimal values low and main number high
+        // :)
+        private Vector BeforeAfterCommaCount(string input)
+        {
+            Vector a;
+            if (input.Contains("."))
+            {
+                decimalSeparated = input.Split('.');
+
+                a.X = decimalSeparated[0].Length;
+                a.Y = decimalSeparated[1].Length;
+            }
+            else
+            {
+                a.X = input.Length;
+                a.Y = 0;
+            }
+
+
+
+
+
+
+                return a;
 
         }
 
